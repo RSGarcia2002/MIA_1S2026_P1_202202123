@@ -1,76 +1,138 @@
-# EXTREAMFS - EXT2 File System Simulator
+EXTREAMFS – Simulador de Sistema de Archivos EXT2
 
-Proyecto 1 - Manejo e Implementación de Archivos  
-Curso: Manejo e Implementación de Archivos  
-Universidad de San Carlos de Guatemala  
+Universidad de San Carlos de Guatemala Facultad de Ingeniería Curso:
+Manejo e Implementación de Archivos Proyecto 1
 
-## 👨‍💻 Autor
-**Nombre:** Randall García  
-**Carnet:** 202202123  
-**Usuario Linux:** randall  
+Estudiante: Randall García Carnet: 202202123
 
----
+------------------------------------------------------------------------
 
-# 📚 Descripción del Proyecto
+DESCRIPCIÓN DEL PROYECTO
 
-Este proyecto consiste en la simulación de un sistema de archivos tipo **EXT2**, implementando comandos similares a los utilizados en sistemas operativos Linux para la administración de discos, particiones y archivos.
+EXTREAMFS es un simulador de sistema de archivos inspirado en EXT2,
+desarrollado en C++, que permite administrar discos virtuales,
+particiones y estructuras internas del sistema de archivos mediante una
+interfaz de comandos.
 
-El sistema permite crear discos virtuales, administrar particiones, montar sistemas de archivos, manejar usuarios y grupos, así como crear directorios y archivos dentro del sistema de archivos.
+El proyecto implementa:
 
-El proyecto incluye:
+-   Creación y eliminación de discos virtuales
+-   Administración de particiones
+-   Montaje de particiones
+-   Formateo de sistemas de archivos
+-   Manejo de archivos y directorios
+-   Gestión de usuarios y sesiones
+-   Generación de reportes gráficos del sistema
 
-- Backend desarrollado en **C++**
-- Frontend desarrollado en **HTML, CSS y JavaScript**
-- Generación de **reportes gráficos usando Graphviz**
+Además, incluye una interfaz web que permite ejecutar comandos y
+visualizar reportes generados por el sistema.
 
----
+------------------------------------------------------------------------
 
-# ⚙️ Funcionalidades Implementadas
+ARQUITECTURA DEL PROYECTO
 
-## Administración de Discos
+Backend (C++) Responsable de:
 
-- `mkdisk`
-- `rmdisk`
+-   Interpretación de comandos
+-   Manejo del sistema de archivos
+-   Administración de discos
+-   Generación de reportes
+-   API HTTP para comunicación con el frontend
 
-## Administración de Particiones
+Frontend (React + Vite) Responsable de:
 
-- `fdisk`
-- `mount`
-- `mounted`
+-   Interfaz gráfica para ejecutar comandos
+-   Visualización de resultados
+-   Visualización de reportes generados
+-   Carga de scripts .smia
 
-## Sistema de Archivos
+------------------------------------------------------------------------
 
-- `mkfs`
+ESTRUCTURA DEL PROYECTO
 
-## Manejo de Usuarios y Grupos
+MIA_1S2026_P1_202202123
 
-- `login`
-- `logout`
-- `mkgrp`
-- `rmgrp`
-- `mkusr`
-- `rmusr`
-- `chgrp`
+Analyzer DiskManagement FileSystem FileOperations HttpServer Reports
+Structs Utilities UserSession frontend main.cpp CMakeLists.txt README.md
 
-## Manejo de Archivos y Directorios
+------------------------------------------------------------------------
 
-- `mkdir`
-- `mkfile`
-- `cat`
+REQUISITOS DEL SISTEMA
 
-## Generación de Reportes
+Linux recomendado
 
-- `disk`
-- `mbr`
-- `inode`
-- `block`
-- `bm_inode`
-- `bm_block`
-- `sb`
-- `file`
-- `ls`
-- `tree`
+Herramientas necesarias:
 
----
+g++ cmake nodejs npm graphviz boost
 
-# 🧠 Estructura del Proyecto
+Instalación en Ubuntu:
+
+sudo apt update sudo apt install build-essential cmake nodejs npm
+graphviz libboost-all-dev
+
+------------------------------------------------------------------------
+
+COMPILACIÓN DEL BACKEND
+
+Desde la carpeta raíz del proyecto ejecutar:
+
+cmake -S . -B build cmake –build build -j
+
+Esto generará el ejecutable:
+
+build/MIA_P1
+
+------------------------------------------------------------------------
+
+EJECUCIÓN DEL BACKEND
+
+./build/MIA_P1 –server 8080
+
+Si todo funciona correctamente aparecerá:
+
+Tamanios de estructuras correctos MBR: 168 bytes Partition: 35 bytes
+EBR: 30 bytes
+
+------------------------------------------------------------------------
+
+EJECUCIÓN DEL FRONTEND
+
+cd frontend npm install npm run dev
+
+Abrir en el navegador:
+
+http://localhost:3000
+
+------------------------------------------------------------------------
+
+EJEMPLO DE COMANDOS
+
+mkdisk -size=50 -unit=M -path=/home/randall/disco.mia fdisk -size=10
+-unit=M -path=/home/randall/disco.mia -name=Part1 mount
+-path=/home/randall/disco.mia -name=Part1 mkfs -id=231A login -user=root
+-pass=123 -id=231A mkdir -path=/home/proyectos mkfile
+-path=/home/proyectos/test.txt -size=100 rep -id=231A -path=/tmp/mbr.jpg
+-name=mbr
+
+------------------------------------------------------------------------
+
+TECNOLOGÍAS UTILIZADAS
+
+Backend - C++ - Crow HTTP Framework - Graphviz - CMake
+
+Frontend - React - Vite - CSS
+
+------------------------------------------------------------------------
+
+REPOSITORIO
+
+https://github.com/RSGarcia2002/MIA_1S2026_P1_202202123
+
+------------------------------------------------------------------------
+
+AUTOR
+
+Randall García Carnet: 202202123
+
+Proyecto desarrollado para el curso Manejo e Implementación de Archivos
+Facultad de Ingeniería – USAC
